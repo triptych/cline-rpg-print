@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printable RPG Game Creator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/polyfills.umd.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Printable RPG Game Creator</h1>
+
+        <div class="generator-form">
+            <h2>Game Parameters</h2>
+            <form id="gameForm">
+                <div class="form-group">
+                    <label for="size">Dungeon Size:</label>
+                    <select id="size" name="size" required>
+                        <option value="small">Small (4-6 rooms)</option>
+                        <option value="medium">Medium (7-9 rooms)</option>
+                        <option value="large">Large (10-12 rooms)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="difficulty">Difficulty:</label>
+                    <select id="difficulty" name="difficulty" required>
+                        <option value="easy">Easy</option>
+                        <option value="normal">Normal</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="theme">Theme:</label>
+                    <select id="theme" name="theme" required>
+                        <option value="ancient">Ancient Ruins</option>
+                        <option value="caves">Dark Caves</option>
+                        <option value="wizard">Wizard Tower</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="treasure">Treasure Goal:</label>
+                    <select id="treasure" name="treasure" required>
+                        <option value="low">Low (2 pieces)</option>
+                        <option value="medium">Medium (3 pieces)</option>
+                        <option value="high">High (4 pieces)</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="generateButton">Generate Game</button>
+            </form>
+        </div>
+
+        <div id="gameOutput" class="game-output hidden">
+            <div class="dungeon-map">
+                <h2>Dungeon Map</h2>
+                <div id="dungeonContainer"></div>
+            </div>
+
+            <div class="game-pieces">
+                <h2>Game Pieces</h2>
+                <div id="tokenContainer"></div>
+            </div>
+
+            <div class="room-cards">
+                <h2>Room Cards</h2>
+                <div id="cardContainer"></div>
+            </div>
+
+            <button id="printButton" class="print-button">Save as PDF</button>
+        </div>
+
+        <div id="rules" class="rules-section">
+            <h2>Game Rules</h2>
+            <div class="rule-section">
+                <h3>Character Stats</h3>
+                <ul>
+                    <li>Health Points (HP): 6</li>
+                    <li>Attack Bonus: +1</li>
+                    <li>Defense: 7</li>
+                </ul>
+            </div>
+
+            <div class="rule-section">
+                <h3>Basic Mechanics</h3>
+                <ol>
+                    <li>Move one room per turn</li>
+                    <li>Combat: Roll 2d6 + Attack Bonus vs Monster Defense</li>
+                    <li>Trap Check: Roll 2d6 when entering a new room
+                        <ul>
+                            <li>2-6: Trap triggers</li>
+                            <li>7-12: Safe passage</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="rule-section">
+                <h3>Victory Conditions</h3>
+                <ul>
+                    <li>Collect required number of treasures</li>
+                    <li>Find and reach the exit</li>
+                    <li>Survive!</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

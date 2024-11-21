@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    padding-bottom: 40px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+h2 {
+    color: #34495e;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #2c3e50;
+    margin: 15px 0;
+}
+
+.generator-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.hidden {
+    display: none;
+}
+
+.game-output {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.dungeon-map, .game-pieces, .room-cards {
+    margin-bottom: 40px;
+}
+
+#dungeonContainer {
+    border: 2px solid #34495e;
+    min-height: 400px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: white;
+}
+
+#tokenContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    background-color: white;
+}
+
+#cardContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.print-button {
+    margin-top: 20px;
+    background-color: #27ae60;
+}
+
+.print-button:hover {
+    background-color: #219a52;
+}
+
+.rules-section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rule-section {
+    margin-bottom: 25px;
+}
+
+.rule-section:last-child {
+    margin-bottom: 0;
+}
+
+.rule-section ul, .rule-section ol {
+    padding-left: 25px;
+    margin: 10px 0;
+}
+
+.rule-section li {
+    margin-bottom: 8px;
+}
+
+.rule-section li:last-child {
+    margin-bottom: 0;
+}
+
+.rule-section li ul {
+    margin: 8px 0;
+}
+
+@media print {
+    .generator-form, .print-button, .rules-section {
+        display: none;
+    }
+
+    .game-output {
+        box-shadow: none;
+        padding: 0;
+    }
+
+    .container {
+        padding: 0;
+    }
+
+    #dungeonContainer canvas {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .room-cards {
+        page-break-before: always;
+    }
+
+    #tokenContainer {
+        page-break-before: always;
+    }
+}
+
+/* Token styles */
+.game-token {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    margin: 10px;
+}
+
+.token-icon {
+    font-size: 24px;
+}
+
+.token-label {
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+/* Room card styles */
+.room-card {
+    border: 1px solid #000;
+    padding: 15px;
+    margin: 10px;
+    background: white;
+    min-height: 150px;
+}
+
+.room-card h3 {
+    margin-bottom: 10px;
+}
+
+.room-card p {
+    margin-bottom: 10px;
+}
+
+.room-card ul {
+    list-style-type: none;
+    padding-left: 0;
+}
