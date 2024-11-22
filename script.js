@@ -218,9 +218,6 @@ class GameRenderer {
             if (room.hasTreasure) this.drawIcon(ctx, '💎', x + this.roomSize - iconSize, y + iconSize);
             if (room.hasTrap) this.drawIcon(ctx, '⚠️', x + this.roomSize/2, y + this.roomSize - iconSize);
         });
-
-        // Store dungeon for PDF generation
-        window.currentDungeon = this.dungeon;
     }
 
     getRoomCenter(room) {
@@ -335,64 +332,6 @@ class GameRenderer {
             container.appendChild(card);
         });
     }
-
-    generatePDF() {
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF('p', 'pt', 'a4');
-        const margin = 40;
-        let yOffset = margin;
-
-        // Add dungeon map
-        const dungeonCanvas = document.querySelector('#dungeonContainer canvas');
-        const dungeonImage = dungeonCanvas.toDataURL('image/jpeg', 1.0);
-        const imgWidth = 515; // A4 width - margins
-        const imgHeight = (dungeonCanvas.height * imgWidth) / dungeonCanvas.width;
-
-        pdf.text('Dungeon Map', margin, yOffset);
-        yOffset += 20;
-        pdf.addImage(dungeonImage, 'JPEG', margin, yOffset, imgWidth, imgHeight);
-        yOffset += imgHeight + 30;
-
-        // Add room cards
-        pdf.addPage();
-        yOffset = margin;
-        pdf.text('Room Cards', margin, yOffset);
-        yOffset += 30;
-
-        this.dungeon.rooms.forEach((room, index) => {
-            if (yOffset > 750) { // Check if we need a new page
-                pdf.addPage();
-                yOffset = margin;
-            }
-
-            pdf.text(`Room ${room.id + 1}`, margin, yOffset);
-            yOffset += 20;
-            pdf.text(room.description, margin, yOffset);
-            yOffset += 20;
-
-            if (room.hasMonster) {
-                pdf.text(`Monster: ${room.monster}`, margin, yOffset);
-                yOffset += 20;
-            }
-            if (room.hasTrap) {
-                pdf.text(`Trap: ${room.trap}`, margin, yOffset);
-                yOffset += 20;
-            }
-            if (room.hasTreasure) {
-                pdf.text('Contains Treasure!', margin, yOffset);
-                yOffset += 20;
-            }
-
-            yOffset += 20; // Space between cards
-        });
-
-        // Add game pieces page
-        pdf.addPage();
-        pdf.text('Game Pieces', margin, margin);
-
-        // Save the PDF
-        pdf.save('dungeon-game.pdf');
-    }
 }
 
 // Form handling
@@ -414,8 +353,7 @@ document.getElementById('gameForm').addEventListener('submit', function(e) {
     renderer.renderRoomCards();
 });
 
-// PDF generation
+// Print functionality
 document.getElementById('printButton').addEventListener('click', function() {
-    const renderer = new GameRenderer(window.currentDungeon);
-    renderer.generatePDF();
+    window.print();
 });

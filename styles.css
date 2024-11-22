@@ -158,30 +158,75 @@ button:hover {
 }
 
 @media print {
-    .generator-form, .print-button, .rules-section {
+    body {
+        background: none;
+        padding: 0;
+        color: black;
+    }
+
+    .generator-form, .print-button {
         display: none;
     }
 
     .game-output {
         box-shadow: none;
         padding: 0;
+        margin: 0;
+        background: none;
     }
 
     .container {
+        max-width: none;
         padding: 0;
+        margin: 0;
+    }
+
+    h1, h2, h3 {
+        color: black;
+    }
+
+    #dungeonContainer {
+        border: none;
+        padding: 0;
+        margin: 20px 0;
+        background: none;
     }
 
     #dungeonContainer canvas {
         max-width: 100%;
         height: auto;
+        page-break-inside: avoid;
     }
 
     .room-cards {
         page-break-before: always;
     }
 
-    #tokenContainer {
+    #cardContainer {
+        display: block;
+        padding: 0;
+    }
+
+    #cardContainer > div {
+        page-break-inside: avoid;
+        border: 1px solid black;
+        margin-bottom: 20px;
+    }
+
+    .game-pieces {
         page-break-before: always;
+    }
+
+    #tokenContainer {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        padding: 0;
+        background: none;
+    }
+
+    #tokenContainer > div {
+        page-break-inside: avoid;
     }
 }
 
